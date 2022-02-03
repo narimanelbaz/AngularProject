@@ -8,7 +8,7 @@ import { ICategory } from '../../../app/sharedClassesAndTypes/ICategory';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  discount: DiscountOffers;
+  discount: DiscountOffers
   storeName:string
   storeLogo:string
   productList:IProduct[]
@@ -17,8 +17,8 @@ export class ProductComponent implements OnInit {
   isPurshased:boolean
   constructor() {
     this.discount=DiscountOffers.offer1
-    this.storeName="Flowers"
-    this.storeLogo="FF"
+    this.storeName="Nariman Store"
+    this.storeLogo="NN"
     this.productList=[{
         id: 1,
         name: 'kia',
