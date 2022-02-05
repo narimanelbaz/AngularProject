@@ -8,7 +8,8 @@ import { ProductsComponent } from './products/products.component';
 })
 export class AppComponent {
   @ViewChild (ProductsComponent) child! :ProductsComponent
-
+  
+  
   
   title = 'Angular1';
   banner="../../assets/livingroom2.jpg"

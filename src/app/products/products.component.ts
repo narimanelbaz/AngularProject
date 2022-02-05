@@ -1,7 +1,9 @@
+import { ProductServiceService } from './../services/product-service.service';
 import { Component, OnInit } from '@angular/core';
 import { DiscountOffers } from '../../app/sharedClassesAndTypes/DiscountOffers';
 import { IProduct } from '../../app/sharedClassesAndTypes/IProduct';
 import { ICategory } from '../../app/sharedClassesAndTypes/ICategory';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -15,25 +17,26 @@ export class ProductsComponent implements OnInit {
   categoryList:ICategory[]
   clientName:string
   isPurshased:boolean
-  constructor() { 
+  
+  constructor(private productservice:ProductServiceService) { 
     this.discount=DiscountOffers.offer1
     this.storeName="Nariman Store"
     this.storeLogo="../../assets/smiley.png"
-    this.productList= 
-    [{
-        id: 1,
-        name: 'blouse',
-        quantity: 10,
-        price: 400,
-        img: 'assets/avatar_hat.jpg',
-        },
-        {
-        id: 2,
-        name: 'trousers',
-        quantity: 20,
-        price: 300,
-        img: 'assets/drawing.jpg',
-        } ]
+    this.productList= this.renderValues()
+    // [{
+    //     id: 1,
+    //     name: 'blouse',
+    //     quantity: 10,
+    //     price: 400,
+    //     img: 'assets/avatar_hat.jpg',
+    //     },
+    //     {
+    //     id: 2,
+    //     name: 'trousers',
+    //     quantity: 20,
+    //     price: 300,
+    //     img: 'assets/drawing.jpg',
+    //     } ]
     this.categoryList=[
       {
         id: 1,
@@ -61,8 +64,8 @@ export class ProductsComponent implements OnInit {
   ngOnInit(): void {
   }
   // day3
-  // renderValues(){
-  //  return this.ProductServiceService.GetAllProducts()
-  // }
+  renderValues(){
+   return (this.productList=this.productservice.GetAllProducts())
+  }
  
 }
