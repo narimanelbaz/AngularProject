@@ -19,13 +19,21 @@ export class ProductsComponent implements OnInit {
     this.discount=DiscountOffers.offer1
     this.storeName="Nariman Store"
     this.storeLogo="../../assets/smiley.png"
-    this.productList=[{
+    this.productList= 
+    [{
         id: 1,
         name: 'blouse',
         quantity: 10,
         price: 400,
         img: 'assets/avatar_hat.jpg',
-    } ]
+        },
+        {
+        id: 2,
+        name: 'trousers',
+        quantity: 20,
+        price: 300,
+        img: 'assets/drawing.jpg',
+        } ]
     this.categoryList=[
       {
         id: 1,
@@ -52,6 +60,9 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-
+  // day3
+  // renderValues(){
+  //  return this.ProductServiceService.GetAllProducts()
+  // }
+ 
 }
