@@ -1,17 +1,15 @@
-
 <table class="table" *ngFor="let post of postsData">
-    
       <tr>
         <th>ID</th>
-        <th>Title</th>
-        <th>Body</th>
+        <th>Name</th>
+        <th>Comment</th>
       </tr>
-    
       <tr>
         <td>{{ post.id }}</td>
-        <td>{{ post.title }}</td>
+        <td>{{ post.name }}</td>
         <td>{{ post.body }}</td>
+        <br />
+        <td></td>
       </tr>
-    <button (click)="goToComment(post)">Comment</button>
+      <button (click)="goToPosts()">Back</button>
   </table>
-{{errMsg}}

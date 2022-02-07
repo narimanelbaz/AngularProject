@@ -1,9 +1,4 @@
-<style>
-    table, th, td {
-      border:2px solid black;
-    }
-    </style>
-<app-product></app-product>
+
 <h1>{{storeName}} <img [src]="storeLogo" alt="" class="img-fluid" style="width: 35px;" /></h1>
 <!-- day2 -->
 <!-- Q1  1-->
@@ -52,4 +47,9 @@
   </table>
 </ng-template>
 <br>
+<!-- day5  -->
+<button (click)="withDisc()">Products with discount</button>&nbsp;
+<button (click)="withoutDisc()">Products without discount</button>
+
+<router-outlet></router-outlet>
 

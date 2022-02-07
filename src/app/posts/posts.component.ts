@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductServiceService } from '../services/product-service.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { ProductServiceService } from '../services/product-service.service';
 export class PostsComponent implements OnInit {
   postsData:any
   errMsg:any
-  constructor(private productServiceService:ProductServiceService) { }
+  
+  constructor(private productServiceService:ProductServiceService, private router: Router) { }
 
   ngOnInit(): void {
     this.productServiceService.getPosts().subscribe(
@@ -21,5 +23,7 @@ export class PostsComponent implements OnInit {
       }
     )
   }
-
+  goToComment(post:any){
+  this.router.navigate(['/comment', post.id])
+  }
 }

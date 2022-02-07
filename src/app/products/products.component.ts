@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DiscountOffers } from '../../app/sharedClassesAndTypes/DiscountOffers';
 import { IProduct } from '../../app/sharedClassesAndTypes/IProduct';
 import { ICategory } from '../../app/sharedClassesAndTypes/ICategory';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -18,7 +19,7 @@ export class ProductsComponent implements OnInit {
   clientName:string
   isPurshased:boolean
   
-  constructor(private productservice:ProductServiceService) { 
+  constructor(private productservice:ProductServiceService, private activatedRouter:ActivatedRoute, private router:Router) { 
     this.discount=DiscountOffers.offer1
     this.storeName="Nariman Store"
     this.storeLogo="../../assets/smiley.png"
@@ -66,6 +67,15 @@ export class ProductsComponent implements OnInit {
   // day3
   renderValues(){
    return (this.productList=this.productservice.GetAllProducts())
+  }
+
+  // day5
+  withDisc(){
+    this.router.navigate(['productWithDiscount'],{relativeTo:this.activatedRouter});
+  }
+
+  withoutDisc(){
+    this.router.navigate(['productWithoutDiscount'],{relativeTo:this.activatedRouter});
   }
  
 }
