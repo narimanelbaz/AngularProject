@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EnrollmentService } from '../enrollment.service';
+import { Register } from '../register';
 
 @Component({
   selector: 'app-register-form',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor() { }
-  topics=["Facebook","Twitter","Google"]
-  ngOnInit(): void {
+  constructor(private enrollment:EnrollmentService ) { 
   }
+  topics=["Facebook","Twitter","Google"]
+  registerModel:Register= new Register("","","","","")
 
+  onSubmit(){
+    console.log(this.registerModel)
+    this.enrollment.enroll(this.registerModel).subscribe(
+     (res)=> {
+        console.log("success",res);
+      },
+      (error)=>
+      {
+       console.log("error",error);
+      })
+  }
+  ngOnInit():void {
+  }
+ 
+  
 }
