@@ -10,7 +10,7 @@ import { User } from '../user';
 export class LoginFormComponent implements OnInit {
   
   constructor(private login:LoginService) { }
-  loginModel:User=new User( "","")
+  loginModel:User=new User( '','')
  
   onLogin()
   {
