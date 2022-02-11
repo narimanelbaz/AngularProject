@@ -1,4 +1,5 @@
-<div class="container-fluid">
+<!-- template driven form -->
+<!-- <div class="container-fluid">
   <form #registerForm="ngForm" novalidate (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>User Name :</label>
@@ -103,5 +104,67 @@
         registerForm.form.invalid || password.value != confirmpassword.value
       "
     />
+  </form>
+</div> -->
+<!-- -------------------- -->
+<!-- Reactive Form -->
+<div class=“container-fluid”>
+  <form [formGroup]="registrationForm">
+    <div class="form-group" > 
+      <label>Name :</label>
+      <input [class.is-invalid]="Name?.invalid && Name?.touched" type="text" class="form-control" formControlName="name">
+      <div *ngIf="Name?.invalid && Name?.touched">
+        <small class="text-danger" *ngIf="Name?.errors?.['required']">Name is Required</small>
+        <small class="text-danger" *ngIf="Name?.errors?.['minlength']">Name must be at least 3 characters</small>
+        <small class="text-danger" *ngIf="Name?.errors?.['forbiddenName']">{{Name?.errors?.['forbiddenName'].value}} is not allowed</small>
+      </div>
+    </div>
+    <div class="form-group" > 
+      <label>Email :</label>
+      <input [class.is-invalid]="email?.invalid && email?.touched" type="email" class="form-control" formControlName="email">
+      <div [class.d-none]="email?.valid || email?.untouched">
+        <small class="text-danger" *ngIf="email?.errors?.['required']" >Email is required</small>
+      </div>
+    </div>
+    <div class="form-group" > 
+      <label>Password :</label>
+      <input  [class.is-invalid]="password?.invalid && password?.touched" type="password" class="form-control" formControlName="password">
+      <div [class.d-none]="password?.valid || password?.untouched">
+        <small class="text-danger" *ngIf="password?.errors?.['required']" >Password is required</small>
+      </div>
+    </div>
+    <div class="form-group"> 
+      <label>Confirm Password :</label>
+      <input  type="password" class="form-control"  formControlName="confirmpassword">
+      <small class="text-danger" *ngIf="registrationForm?.errors?.['misMatch']">password and confirm aren't matched</small>
+    </div>
+    <div class="form-group">
+       <select  class="custom-select" formControlName="topics">
+        <option *ngFor="let topic of topics">{{topic}}</option>
+      </select>
+        <div *ngIf="topic?.invalid && topic?.touched" >
+          <small class="text-danger" *ngIf="topic?.errors?.['required']" >selection is required</small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Number of discount</label>
+        <input  type="text" formControlName="number" class="form-control" [class.invalid]="number?.invalid && number?.touched">
+    </div>
+    <small class="text-danger" *ngIf="number?.errors?.['required']">write discount value in percent</small>
+  
+      <div class="form-check mb-3">
+        <input (click)="setNumberValidation()" type="checkbox" formControlName="subscribe" class="form-check-input"  >
+        <label  class="form-check-label">Does this product containd discount </label>
+    </div>
+  <br><br>
+    <div formArrayName="alternativeComment" *ngFor="let ecomment of alternativeComment?.controls; let i=index">
+      <label>{{" Alternative comment #"}} {{i+1}}</label>
+      <input type="text" [formControlName]="i" class="form-control">
+    </div>
+  <br>
+  
+    <button class="btn btn-success" (click)="addAlternativeComment()">Add alternative Comment</button>
+    <br><br>
+      <input type="submit" class="btn btn-primary" value="Submit Form" >
   </form>
 </div>

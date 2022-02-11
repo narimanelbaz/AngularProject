@@ -1,4 +1,32 @@
-<div class="container-fluid">
+ <!-- ----Reactive Form ------ -->
+ <div class=“container-fluid”>
+   <form [formGroup]="loginForm"> 
+    <div class="form-group" > 
+      <label>Email :</label>
+      <input  [class.is-invalid]="email?.invalid && email?.touched" type="email" class="form-control" formControlName="email">
+      <div [class.d-none]="email?.valid || email?.untouched">
+        <small class="text-danger" *ngIf="email?.errors?.['required']" >Email is required</small>
+      </div>
+    </div>
+    <div class="form-group"> 
+      <label>Password :</label>
+      <input  [class.is-invalid]="password?.invalid && password?.touched" type="password" class="form-control" formControlName="password">
+      <div [class.d-none]="password?.valid || password?.untouched">
+        <small class="text-danger" *ngIf="password?.errors?.['required']" >Password is required</small>
+      </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Submit Form">
+   </form>
+  </div>
+
+
+
+
+
+
+
+ <!-- -----tdf---- -->
+ <!-- <div class="container-fluid">
   <form #userForm="ngForm" novalidate (ngSubmit)="onLogin()">
     <div class="form-group">
       <label>Email :</label>
@@ -43,4 +71,4 @@
     </div>
     <input type="submit" class="btn btn-primary" value="Login" />
   </form>
-</div>
+</div> -->

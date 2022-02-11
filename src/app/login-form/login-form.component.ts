@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { User } from '../user';
 
@@ -9,11 +10,26 @@ import { User } from '../user';
 })
 export class LoginFormComponent implements OnInit {
   
-  constructor(private login:LoginService) { }
+  constructor(private login:LoginService ,  private fb:FormBuilder) { }
   loginModel:User=new User( '','')
  
-  onLogin()
-  {
+  loginForm = this.fb.group({
+    email:['',Validators.required],
+    password:['',Validators.required]
+
+  })
+
+get email (){
+return this.loginForm.get('email')
+}
+
+get password (){
+  return this.loginForm.get('password')
+  }
+
+
+  // onLogin()
+  // {
     
     // console.log(this.loginModel);
     // this.login.loginUser(this.loginModel).subscribe(res=>
@@ -26,7 +42,7 @@ export class LoginFormComponent implements OnInit {
     //   })
 
 
-  }
+  // }
   ngOnInit(): void {
   }
 }
